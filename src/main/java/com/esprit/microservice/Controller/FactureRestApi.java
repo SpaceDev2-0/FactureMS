@@ -2,6 +2,8 @@ package com.esprit.microservice.Controller;
 
 import javax.xml.ws.Response;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.JsonParseException;
 import org.springframework.http.HttpStatus;
@@ -20,7 +22,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.esprit.microservice.Entity.Facture;
 import com.esprit.microservice.Service.IFactureService;
 import com.fasterxml.jackson.databind.JsonMappingException;
+
+
 @RestController
+@RequestMapping("/factures")
 public class FactureRestApi {
 	private final String title="hello I'm the Hotel Microservice";
 	@Autowired
