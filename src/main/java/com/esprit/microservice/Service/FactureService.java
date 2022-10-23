@@ -1,6 +1,7 @@
 package com.esprit.microservice.Service;
 
 import java.io.File;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.xml.ws.Response;
@@ -34,42 +35,30 @@ public class FactureService implements IFactureService {
 	@Autowired
     ServletContext context;
 	
-	@Override
-    public ResponseEntity<Response> add( String Facture) throws Exception
-    {
-
-        System.out.println("Ok .............");
-        Facture s = new ObjectMapper().readValue(Facture, Facture.class);
-
-
-        Facture art = factureRepository.save(s);
-
-
-
-        if (art != null)
-        {
-            return new ResponseEntity<Response>( HttpStatus.OK);
-        }
-        else
-        {
-            return new ResponseEntity<Response>(HttpStatus.BAD_REQUEST);
-        }
-
-
-
-    }
+	
 
 	public Facture updateFacture( Facture facture) {
 	return factureRepository.save(facture);
 }
 	
 	
-	public String deleteFacture(int id) {
-		if (factureRepository.findById(id).isPresent()) {
+	public void deleteFacture(int id) {
 			factureRepository.deleteById(id);
-			return "hotel supprimé";
-} else
-return "hotel non supprimé";
+
+	}
+
+	@Override
+	public List<Facture> getAllFactures() {
+		// TODO Auto-generated method stub
+		return factureRepository.findAll();
+		
+	}
+
+	@Override
+	public Facture addFacture(Facture s) {
+		// TODO Auto-generated method stub
+		return factureRepository.save(s
+				);
 	}
 	
 	

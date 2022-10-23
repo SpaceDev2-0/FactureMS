@@ -1,5 +1,7 @@
 package com.esprit.microservice.Service;
 
+import java.util.List;
+
 import javax.xml.ws.Response;
 
 import org.springframework.http.ResponseEntity;
@@ -13,13 +15,15 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 
 
 
+
 public interface IFactureService {
 
-	ResponseEntity<Response> add( String Hotel)
-			throws Exception;
-	
+
+	Facture addFacture(Facture s);
+    List<Facture> getAllFactures();
+
 	Facture updateFacture(Facture s);
 	// ResponseEntity<String> deleteHotel(int id);
-	String deleteFacture(int id);
+	void deleteFacture(int id);
 	
 }

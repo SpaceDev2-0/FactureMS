@@ -1,5 +1,7 @@
 package com.esprit.microservice.Controller;
 
+import java.util.List;
+
 import javax.xml.ws.Response;
 
 
@@ -9,7 +11,9 @@ import org.springframework.boot.json.JsonParseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -23,39 +27,29 @@ import com.esprit.microservice.Entity.Facture;
 import com.esprit.microservice.Service.IFactureService;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/factures")
 public class FactureRestApi {
-	private final String title="hello I'm the Hotel Microservice";
 	@Autowired
 	IFactureService factureService;
 	@PostMapping("/add")
 	@ResponseBody
-	public ResponseEntity<Response>  addHotel(@RequestParam("facture") String s)throws Exception {
-		 return factureService.add(s);
+	public Facture  addfacture(@RequestBody Facture s)throws Exception {
+		 return factureService.addFacture(s);
 	}
-
 	@PutMapping("/update/{id}")
 	@ResponseBody
-	Facture updateHotel(@RequestBody Facture s){
+	Facture updateFacture(@RequestBody Facture s){
 		return factureService.updateFacture(s);
 	}
-	
-	
-	
-	@RequestMapping("/hello")
-	
-	public String sayHello(){
-		
-		System.out.println(title);
-		return title;
+	@GetMapping("/all")
+    public List<Facture> getFactures(){
+        return factureService.getAllFactures();
+    }
+	@DeleteMapping("/remove-facture/{facture-id}")
+	public void removeFacture(@PathVariable("facture-id") int factureid) {
+		factureService.deleteFacture(factureid);
 	}
 	
-	@DeleteMapping(value="/id", produces= MediaType.APPLICATION_JSON_VALUE)
-	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<String> deleteHotel(@PathVariable(value="id") int  id){
-	return new ResponseEntity<>(factureService.deleteFacture(id),HttpStatus.OK);
-
-	}
 }
