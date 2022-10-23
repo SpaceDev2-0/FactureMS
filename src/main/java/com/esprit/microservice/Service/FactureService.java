@@ -26,6 +26,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 
+
 @Service
 public class FactureService implements IFactureService {
 
@@ -53,7 +54,12 @@ public class FactureService implements IFactureService {
 		return factureRepository.findAll();
 		
 	}
-
+	@Override
+	public Facture retrieveFacture(int id) {
+		// TODO Auto-generated method stub
+		Facture p = factureRepository.findById(id).get();
+		// TODO Auto-generated method stub
+		return p;	}
 	@Override
 	public Facture addFacture(Facture s) {
 		// TODO Auto-generated method stub

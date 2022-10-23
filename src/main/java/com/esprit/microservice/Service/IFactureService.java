@@ -16,12 +16,13 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 
 
 
+
 public interface IFactureService {
 
 
 	Facture addFacture(Facture s);
     List<Facture> getAllFactures();
-
+    Facture retrieveFacture(int id);
 	Facture updateFacture(Facture s);
 	// ResponseEntity<String> deleteHotel(int id);
 	void deleteFacture(int id);

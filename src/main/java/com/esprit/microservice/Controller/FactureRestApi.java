@@ -27,6 +27,7 @@ import com.esprit.microservice.Entity.Facture;
 import com.esprit.microservice.Service.IFactureService;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
+
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/factures")
@@ -38,11 +39,20 @@ public class FactureRestApi {
 	public Facture  addfacture(@RequestBody Facture s)throws Exception {
 		 return factureService.addFacture(s);
 	}
+
+	@GetMapping("/retrieve-facture/{facture-id}")
+	public Facture retrieveStock(@PathVariable("facture-id") int factureid) {
+	return factureService.retrieveFacture(factureid);
+	}
+	
 	@PutMapping("/update/{id}")
 	@ResponseBody
 	Facture updateFacture(@RequestBody Facture s){
 		return factureService.updateFacture(s);
 	}
+	
+	
+	
 	@GetMapping("/all")
     public List<Facture> getFactures(){
         return factureService.getAllFactures();
