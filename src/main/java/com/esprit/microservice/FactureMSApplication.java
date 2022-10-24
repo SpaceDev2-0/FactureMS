@@ -16,7 +16,7 @@ public class FactureMSApplication {
 		SpringApplication.run(FactureMSApplication.class, args);
 	}
 
-	
+
 	@Bean
 	 ApplicationRunner init(FactureRepository repository){
 		return args ->{
